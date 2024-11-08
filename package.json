@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "checkout": "mock checkout"
   },
   "husky": {
     "hooks": {
@@ -43,6 +44,7 @@
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@web3/mock-cli": "^0.3.1",
     "eslint": "^9.14.0",
     "husky": "^8.0.0",
     "less": "^4.2.0",

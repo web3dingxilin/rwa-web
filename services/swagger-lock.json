@@ -1,0 +1,3839 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "protos/api/client_api.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ApiService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/blog": {
+      "get": {
+        "operationId": "ApiService_GetBlog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetBlogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blog_id",
+            "description": "blog_id or slug",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/blog/list": {
+      "get": {
+        "operationId": "ApiService_ListBlogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListBlogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/blog/related_items": {
+      "get": {
+        "operationId": "ApiService_GetBlogRelatedItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetBlogRelatedItemsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "blog_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/contact_us": {
+      "post": {
+        "operationId": "ApiService_ContactUs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiContactUsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiContactUsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/contract/agent/list": {
+      "get": {
+        "operationId": "ApiService_ListAgentOnlineContract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListAgentOnlineContractResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/contract/callback": {
+      "post": {
+        "summary": "callback for pandadoc",
+        "operationId": "ApiService_PandadocWebhook",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiPandaDocWebhookResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "events",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "$ref": "#/definitions/commonPandaDocEvent"
+              }
+            }
+          },
+          {
+            "name": "signature",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/contract/create": {
+      "post": {
+        "operationId": "ApiService_CreateOnlineContract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiCreateOnlineContractResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiCreateOnlineContractRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/contract/user/list": {
+      "get": {
+        "operationId": "ApiService_ListUserOnlineContract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListUserOnlineContractResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/data/market_trend": {
+      "get": {
+        "summary": "数据统计",
+        "operationId": "ApiService_GetMarketTrend",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetMarketTrendResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "property_type",
+            "description": " - 1: PropertyTypeApartment\n - 2: PropertyTypeTownHouse\n - 3: PropertyTypeVilla\n - 4: penthouse",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "default": 0
+          },
+          {
+            "name": "bedroom_count",
+            "description": " - 1: BedroomCountOne\n - 2: BedroomCountTwo\n - 3: BedroomCountThree\n - 4: BedroomCountFour\n - 5: BedroomCountFive\n - 6: BedroomCountSixAndMore\n - 100: BedroomStudio",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              100
+            ],
+            "default": 0
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/data/sale_data_map": {
+      "get": {
+        "operationId": "ApiService_GetSaleDataMap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetSaleDataMapResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/data/transaction/list": {
+      "get": {
+        "operationId": "ApiService_ListPropertyTransactions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListPropertyTransactionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "default": 0
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "property_types",
+            "description": " - 1: PropertyTypeApartment\n - 2: PropertyTypeTownHouse\n - 3: PropertyTypeVilla\n - 4: penthouse",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "bedroom_counts",
+            "description": " - 1: BedroomCountOne\n - 2: BedroomCountTwo\n - 3: BedroomCountThree\n - 4: BedroomCountFour\n - 5: BedroomCountFive\n - 6: BedroomCountSixAndMore\n - 100: BedroomStudio",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                100
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "min_price",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "min_sqm_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "max_sqm_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/developer": {
+      "get": {
+        "operationId": "ApiService_GetDeveloper",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDeveloperResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/developer/related_items": {
+      "get": {
+        "operationId": "ApiService_GetDeveloperRelatedItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDeveloperRelatedItemsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "developer_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/district": {
+      "get": {
+        "operationId": "ApiService_GetDistrict",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDistrictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "district_id",
+            "description": "id/slug",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "slug",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/district/list": {
+      "get": {
+        "summary": "地区相关",
+        "operationId": "ApiService_ListDistrict",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListDistrictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/homepage": {
+      "get": {
+        "summary": "首页",
+        "operationId": "ApiService_Homepage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiHomepageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/image/get_upload_url": {
+      "get": {
+        "operationId": "ApiService_GetUploadImageURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetUploadImageURLResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "content_type",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/latest_app_version": {
+      "get": {
+        "operationId": "ApiService_LatestAppVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiLatestAppVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "device_type",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project": {
+      "get": {
+        "operationId": "ApiService_GetNewProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetNewProjectResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project/list": {
+      "get": {
+        "summary": "新房",
+        "operationId": "ApiService_ListNewProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListNewProjectResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "property_types",
+            "description": "repeated int64 district_ids = 4;\n\n - 1: PropertyTypeApartment\n - 2: PropertyTypeTownHouse\n - 3: PropertyTypeVilla\n - 4: penthouse",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "bedroom_counts",
+            "description": "repeated common.FurnishStatus furnish_statuses = 6;\n\n - 1: BedroomCountOne\n - 2: BedroomCountTwo\n - 3: BedroomCountThree\n - 4: BedroomCountFour\n - 5: BedroomCountFive\n - 6: BedroomCountSixAndMore\n - 100: BedroomStudio",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                100
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "min_price",
+            "description": "repeated common.BathroomCount bathroom_counts = 8;",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "statuses",
+            "description": "int32 min_sqm_size = 11;\nint32 max_sqm_size = 12;\n\n - 1: upcoming\n - 2: completed\n - 3: under construction",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project/nearby_matrix": {
+      "get": {
+        "operationId": "ApiService_GetNewProjectNearbyMatrix",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetNewProjectNearbyMatrixResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project/stat": {
+      "get": {
+        "operationId": "ApiService_GetNewProjectStat",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetNewProjectStatResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project/update": {
+      "post": {
+        "operationId": "ApiService_UpdateNewProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUpdateNewProjectResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateNewProjectRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project_unit": {
+      "get": {
+        "operationId": "ApiService_GetNewProjectUnit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetNewProjectUnitResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "unit_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project_unit/predict/rent/price": {
+      "get": {
+        "operationId": "ApiService_PredictRentForNextThreeYears",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiPredictRentForNextThreeYearsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project_unit_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project_unit/similar_house/stat": {
+      "get": {
+        "operationId": "ApiService_GetSimilarHousesTxCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetSimilarHousesTxCountResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project_unit_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/new_project_unit/stat": {
+      "get": {
+        "operationId": "ApiService_GetNewProjectUnitSaleAvgStat",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetNewProjectUnitSaleAvgStatResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project_unit_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/platform_config": {
+      "get": {
+        "operationId": "ApiService_GetPlatformConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetPlatformConfigResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/property": {
+      "get": {
+        "operationId": "ApiService_GetProperty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetPropertyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "property_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/property/list": {
+      "get": {
+        "summary": "房源信息相关",
+        "operationId": "ApiService_ListProperty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiListPropertyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "district_ids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "property_types",
+            "description": " - 1: PropertyTypeApartment\n - 2: PropertyTypeTownHouse\n - 3: PropertyTypeVilla\n - 4: penthouse",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "furnish_statuses",
+            "description": " - 1: FurnishStatusFurnished\n - 2: FurnishStatusUnFurnished",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "bedroom_counts",
+            "description": " - 1: BedroomCountOne\n - 2: BedroomCountTwo\n - 3: BedroomCountThree\n - 4: BedroomCountFour\n - 5: BedroomCountFive\n - 6: BedroomCountSixAndMore\n - 100: BedroomStudio",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                100
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "bathroom_counts",
+            "description": " - 1: BathoomCountOne\n - 2: BathroomCountTwo\n - 3: BathroomCountThree\n - 4: BathroomCountFour\n - 5: BathroomCountFive\n - 6: BathroomCountSixMore",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "min_price",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "max_price",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          },
+          {
+            "name": "min_sqm_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "max_sqm_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "agent_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "sale_type",
+            "description": " - 1: PropertySaleTypeRent\n - 2: PropertySaleTypeResale\n - 3: PropertySaleTypeNewHome",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/property/query_sug": {
+      "get": {
+        "operationId": "ApiService_PropertyQuerySug",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiPropertyQuerySugResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/save": {
+      "post": {
+        "summary": "收藏相关",
+        "operationId": "ApiService_Save",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiSaveResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiSaveRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/unsave": {
+      "post": {
+        "operationId": "ApiService_UnSave",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUnSaveResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUnSaveRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user": {
+      "get": {
+        "operationId": "ApiService_GetUserProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetUserProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/change_password": {
+      "post": {
+        "operationId": "ApiService_ChangePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiChangePasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiChangePasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/delete": {
+      "post": {
+        "operationId": "ApiService_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiDeleteUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiDeleteUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/email_code": {
+      "post": {
+        "operationId": "ApiService_GetEmailCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetEmailCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiGetEmailCodeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/login": {
+      "post": {
+        "operationId": "ApiService_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiLoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/login/google": {
+      "get": {
+        "operationId": "ApiService_LoginFromGoogle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiLoginFromGoogleResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "redirect_uri",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id_token",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/phone_code": {
+      "post": {
+        "operationId": "ApiService_GetPhoneCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetPhoneCodeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiGetPhoneCodeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/register": {
+      "post": {
+        "operationId": "ApiService_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiRegisterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiRegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/reset_password": {
+      "post": {
+        "operationId": "ApiService_ResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiResetPasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiResetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/saves": {
+      "get": {
+        "operationId": "ApiService_GetUserSaves",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetUserSavesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sub_type",
+            "description": " - 1: SaveTypePropertyRent\n - 2: SaveTypePropertyResale",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "default": 0
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/token": {
+      "post": {
+        "operationId": "ApiService_GetAccessToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetAccessTokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiGetAccessTokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/user/update_profile": {
+      "post": {
+        "operationId": "ApiService_UpdateUserProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiUpdateUserProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiUpdateUserProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ApiService"
+        ]
+      }
+    },
+    "/v1/version": {
+      "get": {
+        "operationId": "ApiService_Version",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiVersionResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ApiService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAdviceMetricInfo": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "field_name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "title": "描述"
+        }
+      }
+    },
+    "apiAgent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "whatsapp_id": {
+          "type": "string"
+        },
+        "avatar": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "agent_brn": {
+          "type": "string"
+        },
+        "broker_orn": {
+          "type": "string"
+        },
+        "broker_name": {
+          "type": "string"
+        },
+        "broker_logo": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "info": {
+          "type": "string"
+        },
+        "experience": {
+          "type": "string"
+        }
+      }
+    },
+    "apiBlog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sub_title": {
+          "type": "string"
+        },
+        "publish_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        },
+        "show_contact": {
+          "type": "boolean"
+        },
+        "pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "title": "market/investment/policy"
+        },
+        "rank_score": {
+          "type": "integer",
+          "format": "int32",
+          "title": "0-5"
+        },
+        "description": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cover_pic": {
+          "$ref": "#/definitions/commonPicture"
+        }
+      }
+    },
+    "apiChangePasswordRequest": {
+      "type": "object",
+      "properties": {
+        "old_password": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "apiChangePasswordResponse": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiContactType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "default": 0,
+      "title": "- 1: rent\n - 2: sale\n - 3: new project"
+    },
+    "apiContactUsRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "user_role": {
+          "type": "string",
+          "title": "landlord/tenant/broker"
+        },
+        "contact_type": {
+          "$ref": "#/definitions/apiContactType"
+        },
+        "item_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "apiContactUsResponse": {
+      "type": "object"
+    },
+    "apiCreateOnlineContractRequest": {
+      "type": "object",
+      "properties": {
+        "buyer_user_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "validate in user/agent mode"
+        },
+        "agent_user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "property_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "content": {
+          "$ref": "#/definitions/commonPandaDocTemplateContent"
+        }
+      }
+    },
+    "apiCreateOnlineContractResponse": {
+      "type": "object"
+    },
+    "apiDeleteUserRequest": {
+      "type": "object"
+    },
+    "apiDeleteUserResponse": {
+      "type": "object"
+    },
+    "apiDeveloper": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "picture": {
+          "$ref": "#/definitions/commonPicture",
+          "title": "logo"
+        },
+        "header_pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDistrict": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "header_pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "property_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "top_properties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiProperty"
+          }
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "apiDistrictPropertyStat": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pre_period": {
+          "type": "string"
+        },
+        "pre_period_value": {
+          "type": "number",
+          "format": "double",
+          "title": "AED/m2"
+        },
+        "cur_period": {
+          "type": "string"
+        },
+        "cur_period_value": {
+          "type": "number",
+          "format": "double",
+          "title": "AED/m2"
+        }
+      }
+    },
+    "apiExchangePair": {
+      "type": "object",
+      "properties": {
+        "pair": {
+          "type": "string",
+          "title": "AED/CNY"
+        },
+        "rate": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiGetAccessTokenRequest": {
+      "type": "object",
+      "properties": {
+        "refresh_token": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetAccessTokenResponse": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetBlogRelatedItemsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiBlog"
+          }
+        },
+        "new_projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiNewProject"
+          }
+        }
+      }
+    },
+    "apiGetBlogResponse": {
+      "type": "object",
+      "properties": {
+        "blog": {
+          "$ref": "#/definitions/apiBlog"
+        }
+      }
+    },
+    "apiGetDeveloperRelatedItemsResponse": {
+      "type": "object",
+      "properties": {
+        "new_projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiNewProject"
+          }
+        }
+      }
+    },
+    "apiGetDeveloperResponse": {
+      "type": "object",
+      "properties": {
+        "developer": {
+          "$ref": "#/definitions/apiDeveloper"
+        }
+      }
+    },
+    "apiGetDistrictResponse": {
+      "type": "object",
+      "properties": {
+        "district": {
+          "$ref": "#/definitions/apiDistrict"
+        }
+      }
+    },
+    "apiGetEmailCodeRequest": {
+      "type": "object",
+      "properties": {
+        "email_code_type": {
+          "$ref": "#/definitions/commonEmailCodeType"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetEmailCodeResponse": {
+      "type": "object"
+    },
+    "apiGetMarketTrendResponse": {
+      "type": "object",
+      "properties": {
+        "sale_price_data": {
+          "$ref": "#/definitions/commonFigure"
+        },
+        "sale_volume_data": {
+          "$ref": "#/definitions/commonFigure"
+        },
+        "rent_price_data": {
+          "$ref": "#/definitions/commonFigure"
+        }
+      }
+    },
+    "apiGetNewProjectNearbyMatrixResponse": {
+      "type": "object",
+      "properties": {
+        "nearby_matrix": {
+          "$ref": "#/definitions/commonNearBySearchMatrix"
+        }
+      }
+    },
+    "apiGetNewProjectResponse": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/apiNewProject"
+        }
+      }
+    },
+    "apiGetNewProjectStatResponse": {
+      "type": "object",
+      "properties": {
+        "sale_volume_stat": {
+          "$ref": "#/definitions/commonFigure"
+        },
+        "sale_avg_price_stat": {
+          "$ref": "#/definitions/commonFigure"
+        },
+        "rent_count_stat": {
+          "$ref": "#/definitions/commonFigure"
+        },
+        "rent_avg_price_stat": {
+          "$ref": "#/definitions/commonFigure"
+        }
+      }
+    },
+    "apiGetNewProjectUnitResponse": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/apiNewProjectUnit"
+        }
+      }
+    },
+    "apiGetNewProjectUnitSaleAvgStatResponse": {
+      "type": "object",
+      "properties": {
+        "sale_avg_price_stat": {
+          "$ref": "#/definitions/commonFigure"
+        }
+      }
+    },
+    "apiGetPhoneCodeRequest": {
+      "type": "object",
+      "properties": {
+        "phone_code_type": {
+          "$ref": "#/definitions/commonPhoneCodeType"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetPhoneCodeResponse": {
+      "type": "object"
+    },
+    "apiGetPlatformConfigResponse": {
+      "type": "object",
+      "properties": {
+        "exchange_pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiExchangePair"
+          }
+        }
+      }
+    },
+    "apiGetPropertyResponse": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "$ref": "#/definitions/apiProperty"
+        }
+      }
+    },
+    "apiGetSaleDataMapResponse": {
+      "type": "object",
+      "properties": {
+        "district_stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiDistrictPropertyStat"
+          }
+        }
+      }
+    },
+    "apiGetSimilarHousesTxCountResponse": {
+      "type": "object",
+      "properties": {
+        "latest_sale_list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiSimilarHousesTxCountInfo"
+          }
+        },
+        "latest_rent_list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiSimilarHousesTxCountInfo"
+          }
+        }
+      }
+    },
+    "apiGetUploadImageURLResponse": {
+      "type": "object",
+      "properties": {
+        "upload_url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "apiGetUserProfileResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/apiUser"
+        },
+        "is_agent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "apiGetUserSavesResponse": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiProperty"
+          }
+        }
+      }
+    },
+    "apiHomepageResponse": {
+      "type": "object",
+      "properties": {
+        "hot_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommended_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiProperty"
+          }
+        },
+        "brokers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiAgent"
+          }
+        },
+        "new_projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiNewProject"
+          }
+        },
+        "slides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiHomepageSlides"
+          }
+        }
+      }
+    },
+    "apiHomepageSlides": {
+      "type": "object",
+      "properties": {
+        "pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "blog_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "apiInvestmentAdvice": {
+      "type": "object",
+      "properties": {
+        "liquidity_ability": {
+          "$ref": "#/definitions/apiAdviceMetricInfo",
+          "title": "流通能力"
+        },
+        "appreciation_potential": {
+          "$ref": "#/definitions/apiAdviceMetricInfo",
+          "title": "升值潜力"
+        },
+        "rental_return": {
+          "$ref": "#/definitions/apiAdviceMetricInfo",
+          "title": "出租回报"
+        },
+        "self_occupancy_value": {
+          "$ref": "#/definitions/apiAdviceMetricInfo",
+          "title": "自住价值"
+        }
+      },
+      "title": "InvestmentAdvice 结构体用于表示投资建议指标"
+    },
+    "apiLatestAppVersionResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "app_url": {
+          "type": "string"
+        }
+      }
+    },
+    "apiListAgentOnlineContractResponse": {
+      "type": "object",
+      "properties": {
+        "contracts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiOnlineContract"
+          }
+        }
+      }
+    },
+    "apiListBlogsResponse": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiBlog"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apiListDistrictResponse": {
+      "type": "object",
+      "properties": {
+        "districts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiDistrict"
+          }
+        }
+      }
+    },
+    "apiListNewProjectResponse": {
+      "type": "object",
+      "properties": {
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiNewProject"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apiListPropertyResponse": {
+      "type": "object",
+      "properties": {
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiProperty"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "recommended": {
+          "type": "boolean"
+        }
+      }
+    },
+    "apiListPropertyTransactionsResponse": {
+      "type": "object",
+      "properties": {
+        "sale_txs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiSaleTransaction"
+          }
+        },
+        "rent_txs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiRentTransaction"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apiListUserOnlineContractResponse": {
+      "type": "object",
+      "properties": {
+        "contracts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiOnlineContract"
+          }
+        }
+      }
+    },
+    "apiLoginFromGoogleResponse": {
+      "type": "object",
+      "properties": {
+        "refresh_token": {
+          "type": "string"
+        },
+        "access_token": {
+          "type": "string"
+        }
+      }
+    },
+    "apiLoginRequest": {
+      "type": "object",
+      "properties": {
+        "login_type": {
+          "$ref": "#/definitions/commonUserType"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "apiLoginResponse": {
+      "type": "object",
+      "properties": {
+        "refresh_token": {
+          "type": "string"
+        },
+        "access_token": {
+          "type": "string"
+        }
+      }
+    },
+    "apiNewProject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation"
+        },
+        "delivery_date": {
+          "type": "string"
+        },
+        "base_price": {
+          "$ref": "#/definitions/commonPrice"
+        },
+        "media_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonMediaItem"
+          }
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiNewProjectUnit"
+          }
+        },
+        "developer": {
+          "type": "string"
+        },
+        "developer_pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "developer_description": {
+          "type": "string"
+        },
+        "district": {
+          "$ref": "#/definitions/apiDistrict"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "brochure_url": {
+          "type": "string"
+        },
+        "has_vr": {
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/definitions/commonNewProjectStatus"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonPropertyFeatureGroup"
+          }
+        },
+        "min_unit_area_sqm": {
+          "type": "number",
+          "format": "float"
+        },
+        "max_unit_area_sqm": {
+          "type": "number",
+          "format": "float"
+        },
+        "unit_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description_style": {
+          "$ref": "#/definitions/commonTextStyle"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonLandMark"
+          }
+        },
+        "payment_plan": {
+          "$ref": "#/definitions/apiPaymentPlan"
+        },
+        "mater_project_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "developer_info": {
+          "$ref": "#/definitions/apiDeveloper"
+        },
+        "investment_advice": {
+          "$ref": "#/definitions/apiInvestmentAdvice"
+        }
+      }
+    },
+    "apiNewProjectUnit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "type": {
+          "$ref": "#/definitions/commonPropertyType"
+        },
+        "project": {
+          "$ref": "#/definitions/apiNewProject"
+        },
+        "name": {
+          "type": "string"
+        },
+        "area_sqm_size": {
+          "type": "number",
+          "format": "float"
+        },
+        "base_price": {
+          "$ref": "#/definitions/commonPrice"
+        },
+        "bedroom_count": {
+          "$ref": "#/definitions/commonBedroomCount"
+        },
+        "bathroom_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "unit_plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonMediaItem"
+          }
+        },
+        "unit_medias": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonMediaItem"
+          }
+        },
+        "vr_video_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "furnish_status": {
+          "$ref": "#/definitions/commonFurnishStatus"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "apiOnlineContract": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "tenant_user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "agent_user_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "property": {
+          "$ref": "#/definitions/apiProperty"
+        },
+        "status": {
+          "$ref": "#/definitions/apiOnlineContractStatus"
+        },
+        "tenant_link": {
+          "type": "string"
+        },
+        "signed_file_link": {
+          "type": "string"
+        },
+        "from_date": {
+          "type": "string"
+        },
+        "to_date": {
+          "type": "string"
+        }
+      }
+    },
+    "apiOnlineContractStatus": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 0: OnlineContractStatusReserved\n - 1: OnlineContractStatusSigning\n - 2: OnlineContractStatusCompleted"
+    },
+    "apiPandaDocWebhookResponse": {
+      "type": "object"
+    },
+    "apiPaymentPlan": {
+      "type": "object",
+      "properties": {
+        "milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiPaymentPlanMilestone"
+          }
+        }
+      }
+    },
+    "apiPaymentPlanMilestone": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "percentage": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiPredictRentAvgPrice": {
+      "type": "object",
+      "properties": {
+        "curr_year_price": {
+          "type": "number",
+          "format": "double"
+        },
+        "next_year_price": {
+          "type": "number",
+          "format": "double"
+        },
+        "three_year_price": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "apiPredictRentForNextThreeYearsResponse": {
+      "type": "object",
+      "properties": {
+        "predict_rent_avg_price": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiPredictRentAvgPrice"
+          }
+        }
+      }
+    },
+    "apiProperty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/commonPropertyType"
+        },
+        "bedroom_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bathroom_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "area_sqm_size": {
+          "type": "number",
+          "format": "float"
+        },
+        "price": {
+          "$ref": "#/definitions/commonPrice"
+        },
+        "available_from": {
+          "type": "string",
+          "format": "int64"
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation"
+        },
+        "furnish_status": {
+          "$ref": "#/definitions/commonFurnishStatus"
+        },
+        "pics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonPicture"
+          }
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonPropertyFeatureGroup"
+          }
+        },
+        "district": {
+          "$ref": "#/definitions/apiDistrict"
+        },
+        "agent": {
+          "$ref": "#/definitions/apiAgent"
+        },
+        "trends": {
+          "$ref": "#/definitions/commonFigure"
+        },
+        "trend_description": {
+          "type": "string"
+        },
+        "dld_permit_number": {
+          "type": "string"
+        },
+        "dld_permit_url": {
+          "type": "string"
+        },
+        "list_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "developer_pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "developer_description": {
+          "type": "string"
+        },
+        "saved": {
+          "type": "boolean"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "sale_type": {
+          "$ref": "#/definitions/commonPropertySaleType"
+        },
+        "vr_video_url": {
+          "type": "string"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonLandMark"
+          }
+        },
+        "developer_info": {
+          "$ref": "#/definitions/apiDeveloper"
+        }
+      }
+    },
+    "apiPropertyQuerySugResponse": {
+      "type": "object",
+      "properties": {
+        "sugs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/apiSugDetail"
+          }
+        }
+      }
+    },
+    "apiRegisterRequest": {
+      "type": "object",
+      "properties": {
+        "register_type": {
+          "$ref": "#/definitions/commonUserType"
+        },
+        "email": {
+          "type": "string"
+        },
+        "email_code": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "apiRegisterResponse": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiRentTransaction": {
+      "type": "object"
+    },
+    "apiResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "email_code": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "apiResetPasswordResponse": {
+      "type": "object"
+    },
+    "apiSaleTransaction": {
+      "type": "object",
+      "properties": {
+        "tx_id": {
+          "type": "string"
+        },
+        "building_name": {
+          "type": "string"
+        },
+        "area_name": {
+          "type": "string"
+        },
+        "total_price": {
+          "$ref": "#/definitions/commonPrice"
+        },
+        "tx_time": {
+          "type": "string",
+          "format": "int64",
+          "title": "timestamp second"
+        },
+        "property_type": {
+          "$ref": "#/definitions/commonPropertyType"
+        },
+        "bedroom_counts": {
+          "$ref": "#/definitions/commonBedroomCount"
+        },
+        "area_sqm_size": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiSaveRequest": {
+      "type": "object",
+      "properties": {
+        "property_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiSaveResponse": {
+      "type": "object"
+    },
+    "apiSimilarHousesTxCountInfo": {
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "format": "int64"
+        },
+        "price": {
+          "type": "number",
+          "format": "float"
+        },
+        "tx_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_sqm": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "apiSugDetail": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/apiSugType"
+        },
+        "candidate_query": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiSugType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "default": 0
+    },
+    "apiUnSaveRequest": {
+      "type": "object",
+      "properties": {
+        "property_id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "apiUnSaveResponse": {
+      "type": "object"
+    },
+    "apiUpdateNewProjectRequest": {
+      "type": "object",
+      "properties": {
+        "new_project_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        },
+        "description_style": {
+          "$ref": "#/definitions/commonTextStyle"
+        }
+      }
+    },
+    "apiUpdateNewProjectResponse": {
+      "type": "object"
+    },
+    "apiUpdateUserProfileRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "email_code": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "phone_code": {
+          "type": "string"
+        }
+      }
+    },
+    "apiUpdateUserProfileResponse": {
+      "type": "object"
+    },
+    "apiUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "avatar": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "google": {
+          "type": "string"
+        },
+        "facebook": {
+          "type": "string"
+        }
+      }
+    },
+    "apiVersionResponse": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        }
+      }
+    },
+    "commonBathroomCount": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "default": 0,
+      "title": "- 1: BathoomCountOne\n - 2: BathroomCountTwo\n - 3: BathroomCountThree\n - 4: BathroomCountFour\n - 5: BathroomCountFive\n - 6: BathroomCountSixMore"
+    },
+    "commonBedroomCount": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        100
+      ],
+      "default": 0,
+      "title": "- 1: BedroomCountOne\n - 2: BedroomCountTwo\n - 3: BedroomCountThree\n - 4: BedroomCountFour\n - 5: BedroomCountFive\n - 6: BedroomCountSixAndMore\n - 100: BedroomStudio"
+    },
+    "commonBillingCycle": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "default": 0,
+      "title": "- 1: 月付\n - 2: 年付\n - 3: 一次性"
+    },
+    "commonEmailCodeType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 1: EmailCodeRegister\n - 2: EmailCodeResetPassword"
+    },
+    "commonFigure": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "datas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonFigureData"
+          }
+        }
+      }
+    },
+    "commonFigureData": {
+      "type": "object",
+      "properties": {
+        "x_value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "len(x_value) == len(y_value)"
+        },
+        "x_label": {
+          "type": "string"
+        },
+        "y_value": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "y_label": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "commonFurnishStatus": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 1: FurnishStatusFurnished\n - 2: FurnishStatusUnFurnished"
+    },
+    "commonLandMark": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "distance": {
+          "type": "number",
+          "format": "double",
+          "title": "unit: meter"
+        },
+        "car_time": {
+          "type": "number",
+          "format": "double",
+          "title": "unit: second"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "commonLocation": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "commonMediaItem": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/commonMediaType"
+        },
+        "pic": {
+          "$ref": "#/definitions/commonPicture"
+        },
+        "video": {
+          "$ref": "#/definitions/commonVideo"
+        }
+      }
+    },
+    "commonMediaType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 1: pic\n - 2: video"
+    },
+    "commonNearBySearchMatrix": {
+      "type": "object",
+      "properties": {
+        "transport": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonNearbySearchData"
+          },
+          "title": "交通"
+        },
+        "school": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonNearbySearchData"
+          },
+          "title": "教育"
+        },
+        "shop": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonNearbySearchData"
+          },
+          "title": "商圈"
+        },
+        "park": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonNearbySearchData"
+          },
+          "title": "娱乐"
+        },
+        "medical": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonNearbySearchData"
+          },
+          "title": "医疗"
+        }
+      },
+      "title": "周边配套设施"
+    },
+    "commonNearbySearchData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/commonLocation",
+          "title": "包含经纬度的坐标信息"
+        }
+      }
+    },
+    "commonNewProjectStatus": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "default": 0,
+      "title": "- 1: upcoming\n - 2: completed\n - 3: under construction"
+    },
+    "commonPandaDocEvent": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/commonPandaDocEventData"
+        }
+      }
+    },
+    "commonPandaDocEventData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "action_by": {
+          "$ref": "#/definitions/commonPandaDocUserInfo"
+        },
+        "template": {
+          "$ref": "#/definitions/commonPandaDocEventTemplate"
+        }
+      }
+    },
+    "commonPandaDocEventTemplate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "commonPandaDocTemplateContent": {
+      "type": "object",
+      "properties": {
+        "owner_name": {
+          "type": "string",
+          "title": "owner & lessor info"
+        },
+        "lessor_name": {
+          "type": "string"
+        },
+        "lessor_emirates_id": {
+          "type": "string"
+        },
+        "lessor_license_no": {
+          "type": "string"
+        },
+        "lessor_licensing_authority": {
+          "type": "string"
+        },
+        "lessor_email": {
+          "type": "string"
+        },
+        "lessor_phone": {
+          "type": "string"
+        },
+        "tenant_name": {
+          "type": "string",
+          "title": "tenant info"
+        },
+        "tenant_emirates_id": {
+          "type": "string"
+        },
+        "tenant_license_no": {
+          "type": "string"
+        },
+        "tenant_licensing_authority": {
+          "type": "string"
+        },
+        "tenant_email": {
+          "type": "string"
+        },
+        "tenant_phone": {
+          "type": "string"
+        },
+        "property_usage": {
+          "$ref": "#/definitions/commonPandaDocTemplatePropertyUsage",
+          "title": "property_info"
+        },
+        "plot_no": {
+          "type": "string"
+        },
+        "makani_no": {
+          "type": "string"
+        },
+        "building_name": {
+          "type": "string"
+        },
+        "property_no": {
+          "type": "string"
+        },
+        "property_type": {
+          "type": "string"
+        },
+        "property_area": {
+          "type": "string",
+          "title": "square meters"
+        },
+        "location": {
+          "type": "string"
+        },
+        "permission_no": {
+          "type": "string"
+        },
+        "contract_period_from": {
+          "type": "string",
+          "title": "contract info"
+        },
+        "contract_period_to": {
+          "type": "string"
+        },
+        "contract_value": {
+          "type": "string"
+        },
+        "annual_rent": {
+          "type": "string"
+        },
+        "security_deposit_amount": {
+          "type": "string"
+        },
+        "mode_of_payment": {
+          "type": "string"
+        },
+        "additional_terms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "additionals, max 5"
+        }
+      }
+    },
+    "commonPandaDocTemplatePropertyUsage": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "default": 0,
+      "title": "- 1: PandaDocTemplatePropertyUsageIndustrial\n - 2: PandaDocTemplatePropertyUsageCommercial\n - 3: PandaDocTemplatePropertyUsageResidential"
+    },
+    "commonPandaDocUserInfo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "commonPhoneCodeType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "default": 0,
+      "title": "- 1: 添加、修改手机号"
+    },
+    "commonPicture": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "small_url": {
+          "type": "string"
+        },
+        "medium_url": {
+          "type": "string"
+        },
+        "large_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "commonPrice": {
+      "type": "object",
+      "properties": {
+        "billing_cycle": {
+          "$ref": "#/definitions/commonBillingCycle"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        }
+      }
+    },
+    "commonPropertyFeature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "cate": {
+          "type": "string"
+        },
+        "name_zh": {
+          "type": "string"
+        },
+        "cate_zh": {
+          "type": "string"
+        }
+      }
+    },
+    "commonPropertyFeatureGroup": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/commonPropertyFeature"
+          }
+        }
+      }
+    },
+    "commonPropertySaleType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "default": 0,
+      "title": "- 1: PropertySaleTypeRent\n - 2: PropertySaleTypeResale\n - 3: PropertySaleTypeNewHome"
+    },
+    "commonPropertyTxType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0
+    },
+    "commonPropertyType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "default": 0,
+      "title": "- 1: PropertyTypeApartment\n - 2: PropertyTypeTownHouse\n - 3: PropertyTypeVilla\n - 4: penthouse"
+    },
+    "commonSaveSubType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 1: SaveTypePropertyRent\n - 2: SaveTypePropertyResale"
+    },
+    "commonTextStyle": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 0: TextStyleReserved\n - 1: TextStylePlainText\n - 2: TextStylePlainMarkdown"
+    },
+    "commonUserType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "default": 0,
+      "title": "- 0: 普通注册流程，邮箱是必填，手机号是非必填\n - 1: 邮箱\n - 2: 手机号"
+    },
+    "commonVideo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "cover_image": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
